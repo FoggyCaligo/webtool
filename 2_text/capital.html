@@ -1,0 +1,69 @@
+
+
+<center>
+    <div style="width:100%;height:30px; background-color: rgb(234, 234, 234);border-radius:10px; text-align:center;line-height:30px; font-size:large;">입력란</div>
+    <textarea id="inputTxt" style="width:100%; height:30%; border-radius:10px;" placeholder="여기에 입력하세요" onkeyup="f_capital(this.value)"></textarea>
+
+    <div style="width:100%;height:30px; background-color: rgb(234, 234, 234);border-radius:10px; text-align:center;line-height:30px; font-size:large;">대문자</div>
+    <textarea id="upTxt" style="width:100%; height:30%; border-radius:10px;" placeholder="대문자로 변환된 글이 출력되는 곳입니다."></textarea>
+
+    <div style="width:100%;height:30px; background-color: rgb(234, 234, 234);border-radius:10px; text-align:center;line-height:30px; font-size:large;">소문자</div>
+    <textarea id="lowTxt" style="width:100%; height:30%; border-radius:10px;" placeholder="소문자로 변환된 글이 출력되는 곳입니다."></textarea>
+
+    
+
+    <!-- <div id="btnbox" style="width:100%; height:40%; border-radius:10px;">
+        <input id="to_c_b" type="button" value="대소 반전" style="width:30vw;height:35vh; border-radius:33px; background-color:white; border-color: #FFFAD6; float:left; border-width:5px; font-size:large; line-height:33vh" onclick="to_c_b()">
+        <input id="to_b_b" type="button" value="대문자로" style="width:30vw;height:35vh; border-radius:33px; background-color:white; border-color: #FFFAD6;  border-width:5px; font-size:large; line-height:33vh" onclick="to_b_b()">
+        <input id="to_s_b" type="button" value="소문자로" style="width:30vw;height:35vh; border-radius:33px; background-color:white; border-color: #FFFAD6; float:right; border-width:5px; font-size:large; line-height:33vh" onclick="to_s_b()">
+    </div>
+     -->
+
+
+</center>
+
+
+<script>
+    function f_capital(v){
+        //v = document.getElementById("inputTxt").value;
+        document.getElementById("upTxt").value = v.toUpperCase();
+        document.getElementById("lowTxt").value = v.toLowerCase();
+    }
+</script>
+
+
+
+<!-- <script>
+function to_c_b(){//대소 반전
+    v = document.getElementById("inputTxt").value;
+    str = ""
+    
+}
+function to_b_b(){//대문자로
+    v = document.getElementById("inputTxt").value;
+    v = v.toUpperCase();
+    document.getElementById("inputTxt").value = v;
+}
+function to_s_b(){//소문자로
+    v = document.getElementById("inputTxt").value;
+    v = v.toLowerCase();
+    document.getElementById("inputTxt").value = v;
+}
+
+
+
+
+
+
+
+function isUpperCase(str) {//대문자인지 확인하는 함수 작성
+  return str === str.toUpperCase();
+}
+function isLowerCase(str) {// 소문자인지 확인하는 함수 작성
+  return str === str.toLowerCase();
+} 
+
+
+</script>-->
+
+

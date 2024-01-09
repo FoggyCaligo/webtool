@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTool</title>    
+    <script type="text/javascript" src="index.js"></script> 
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body style="background-color: #FFFAD6;">
+
+   
+
+    
+    
+
+    <center><div style="width:90vw;height:30px; background-color: rgb(234, 234, 234);border-radius:10px; text-align:center;line-height:30px; font-size:large;">
+        <label for="lang">계산기 종류 선택을 위해 아래 제목을 눌러주세요</label>
+    </div></center>
+
+    <center><div style="width:90vw;height:50px; background-color: white;border-radius:10px; text-align:center;line-height:50px; font-size:large;">
+        <form action="#"> 
+            <select id="title" style="width:90vw; height:50px;"  onchange="calc_change_btn(this.options[this.selectedIndex].text)">
+              <optgroup label="텍스트 툴">
+                <option value="글자수 & 발표시간 계산기">글자수 & 발표시간 계산기</option>
+                <option value="대소문자 변환">대소문자 변환</option>
+              </optgroup>
+              <optgroup label="생활계산기">
+                <option value="퍼센트 계산기" >퍼센트 계산기</option>
+                <option value="요리 계량단위 변환기">요리 계량단위 변환기</option>
+                <option value="거리 단위 변환기">거리 단위 변환기</option>
+              </optgroup>
+              <optgroup label="증권계산기">
+                <option value="배당성장주 복리 계산기">배당성장주 복리 계산기</option>
+                <option value="주식 수익 계산기">주식 수익 계산기</option>
+              </optgroup>
+            </select>
+        </form>
+    </div></center>
+
+
+    <div style="width:100vw;height:1vh; background-color:#FFFAD6 ;"></div>
+
+    <center><div id="contentbox" style="width:90vw;height:90vh; background-color: white;border-radius:10px;"></div></center>
+    <script>
+      calc_change_btn("글자수 & 발표시간 계산기");
+    </script>
+
+
+<!--calc_change_btn()-->
+</body>
+</html>

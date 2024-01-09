@@ -1,0 +1,34 @@
+
+
+<center>
+    <div style="width:90vw;height:50px;" onload="to_count()">
+        <!--speed btn-->
+        <div id="Speed_btn" style="line-height:50px; text-align:center;   width:45vw; height:50px; background-color:white; border-radius:10px; border-color: white; float:left; box-shadow:none;" onclick="content_toggle_btn(true)">
+            Speed
+        </div>
+        <!--count btn-->
+        <div id="Count_btn" style="line-height:50px;text-align:center;  width:45vw; height:50px; background-color:#EDEDED; border-radius:10px; border-color: white; float:left; box-shadow:none;" onclick="content_toggle_btn(false)">
+            Count
+        </div>
+    </div>
+
+    <div id="content" ></div>
+</center>
+
+
+<script>
+    function content_toggle_btn(b){
+        if(b==true){
+            document.getElementById("Speed_btn").style.backgroundColor="#EDEDED";
+            document.getElementById("Count_btn").style.backgroundColor="white";
+            document.getElementById("content").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="./speed&count/Speed.html"></object>';
+        }else{
+            document.getElementById("Speed_btn").style.backgroundColor="white";
+        document.getElementById("Count_btn").style.backgroundColor="#EDEDED";
+        document.getElementById("content").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="speed&count/Count.html"></object>';
+        }
+    }
+
+
+content_toggle_btn(false);
+</script>

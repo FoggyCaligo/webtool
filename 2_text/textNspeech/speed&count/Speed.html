@@ -1,0 +1,113 @@
+ <center>
+<div id="subtitle" style="padding:10vh 0 0; align-items:center; text-align:center; border-radius:10px;background-color:#EDEDED ; width:100%; height:10vh;">
+<b>발표시간 측정 기준 설정</b>
+</div>
+
+
+<div id="explain" style="text-align:center; border-radius:10px;border:5px solid #EDEDED; width:97vw; height:fit-content;">
+    [시작을 누르고 읽은 후 정지를 누르세요]
+</div>
+
+
+</br>
+
+
+<div style="display:grid; grid-template-columns: 15vw 65vw 15vw;grid-template-rows:auto;">
+    <div id="start" style="text-align:center; border-radius:10px;border:2px solid #82B366;background-color:#D5E8D4;height:fit-content; " onclick="resetClock(); startClock()">
+    시작
+    </div>
+    <div id="timer" style="text-align:center; border-radius:10px;border:2px solid #EDEDED;height:fit-content;">
+    00:00s
+    </div>
+    <div id="end" style="text-align:center; border-radius:10px;border:2px solid #B85450;background-color:#F8CECC;height:fit-content; " onclick="stopClock()">
+    정지
+    </div>
+</div>
+
+
+
+
+<!--읽을 글-->
+<div id="readtxt" style="text-align:left; border-radius:10px; border:1px solid black; width:100%; height:30vh;">
+    안녕하십니까 무엇에 대한 발표를 맡게된 어느 팀의 누구 입니다.
+    저희가 발표할 것은 이것으로, 무언가를 기반으로 만들어져
+    이정도의 효과를 낼 수 있습니다.
+</div><!--21개 단어-->
+
+    
+
+    <div id="subtitle" style=" align-items:center; text-align:center; border-radius:10px;background-color:#EDEDED ; width:100%; height:fit-content;">
+        글자당 평균 <b id="wpm">0</b>초
+    </div>
+</center>
+
+<script>
+    function load(){
+        document.getElementById("wpm").innerHTML = localStorage.getItem("wpm");
+    }
+    load();
+</script>
+
+
+<script>
+
+
+
+    let timerId;
+    let time = 0;
+    const timer = document.getElementById("timer");
+    let  hour, min, sec;
+
+    function printTime() {
+        time++;
+        timer.innerText = getTimeFormatString();
+    }
+    function getTimeFormatString() {
+        hour = parseInt(String(time / (60 * 60)));
+        min = parseInt(String((time - (hour * 60 * 60)) / 60));
+        sec = time % 60;
+
+        return String(min).padStart(2, '0') + ":" + String(sec).padStart(2, '0');
+    }
+    //시계 시작 - 재귀호출로 반복실행
+    function startClock() {
+        printTime();
+        stopClock();
+        
+        show_wps();
+
+        timerId = setTimeout(startClock, 1000);
+    }
+
+    //시계 중지
+    function stopClock() {
+        if (timerId != null) {
+            clearTimeout(timerId);
+            localStorage.setItem("wpm",wpm);
+        }
+    }
+    // 시계 초기화
+    function resetClock() {
+        stopClock()
+        timer.innerText = "00:00:00";
+        time = 0;
+    }
+
+
+    //calc
+    function show_wps(){
+        wpm = 0;
+
+        //wpm = 21*(60/time);
+        wpm = time/66;
+        document.getElementById("wpm").innerHTML=String(wpm);
+        localStorage.setItem("wpm",wpm);
+        //localStorage.getItem('key');
+
+
+    }
+
+    
+
+
+</script>

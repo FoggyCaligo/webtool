@@ -1,0 +1,20 @@
+select {
+    width:90vw;
+    height:50px;
+
+    outline: 0;
+
+    background: white; 
+    border-radius:10px;
+    
+    line-height:50px; 
+    font-size:20px;
+  }
+
+option {
+    text-align: center;
+}
+
+optgroup{
+
+}

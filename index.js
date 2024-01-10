@@ -39,14 +39,14 @@ function calc_change_btn(value){
 
 
 function change2textnspeech(){
-    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="../2_text/textNspeech/textNspeech.html"></object>';
+    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="./2_text/textNspeech/textNspeech.html"></object>';
 }
 
 
 function change2textcapital(){
-    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="../2_text/capital.html"></object>';
+    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="./2_text/capital.html"></object>';
 }
 
 function change2livpercent(){
-    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="../3_living/percent.html"></object>';
+    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="./3_living/percent.html"></object>';
 }

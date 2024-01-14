@@ -25,18 +25,19 @@
 
     <textarea id="output2" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="20" onkeyup="percent_2()"></textarea>%
 </div>
+<br><br><br>
 
 <!---->
-<div style="float:left">퍼센트 계산 : 원래값이 변경값으로 바뀔 때의 증감값 </div>
+<div style="float:left">퍼센트 계산 : 원래값에서 변경값으로 바뀔 때 증감값 </div>
 <br>
 <div style="width:100vw; height:fit-content;">
-    <textarea id="input21" style="width:25%; height:fit-content; border-radius:10px; float:left" placeholder="일부값 20" onkeyup="percent_2()"></textarea>
-    <div style="color:gray; margin-left:1%; margin-right:1%; float:left;">은 </div>
+    <textarea id="input31" style="width:25%; height:fit-content; border-radius:10px; float:left" placeholder="원래값 100" onkeyup="percent_3()"></textarea>
+    <div style="color:gray; margin-left:1%; margin-right:1%; float:left;">이 </div>
+
+    <textarea id="input32" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="변경값 20" onkeyup="percent_3()"></textarea>
+    <div style="color:gray; float:left; margin-left:1%; margin-right:1%;">로 : </div>
     
-    <textarea id="input22" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="전체값 100" onkeyup="percent_2()"></textarea>
-    <div style="color:gray; float:left; margin-left:1%; margin-right:1%;">의 : </div>
-    
-    <textarea id="output2" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="20" onkeyup="percent_2()"></textarea>%
+    <textarea id="output3" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="20" onkeyup="percent_3()"></textarea>%
 </div>
 
 
@@ -60,6 +61,11 @@ function percent_2(){
     document.getElementById("output2").value = (input21/input22)*100;
 }
 
+function percent_3(){
+    input31 = parseFloat(document.getElementById("input31").value);
+    input32 = parseFloat(document.getElementById("input32").value);
+    document.getElementById("output3").value = (input31-input32)/input31*100;
+}
 
 
 

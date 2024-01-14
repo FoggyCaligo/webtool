@@ -1,9 +1,65 @@
 
-<textarea id="input11" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="전체값 100" onkeyup="f_capital(this.value)"></textarea>
-<div style="color:gray; float:left; margin-left:1%; margin-right:1%;">의</div>
 
-<textarea id="inputTxt" style="width:30%; height:fit-content; border-radius:10px; float:left" placeholder="전체값 100" onkeyup="f_capital(this.value)"></textarea>
-<div style="color:gray; float:left; margin-left:1%; margin-right:1%;">% 에 해당하는 값 : <div>
 
-<div id = "output"></div>
+<!---->
+<div style="float:left">퍼센트 계산 : 전체값의 x%</div>
+<br>
+<div style="width:100vw; height:fit-content;">
+    <textarea id="input11" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="전체값 100" onkeyup="percent_1()"></textarea>
+    <div style="color:gray; float:left; margin-left:1%; margin-right:1%;"> 의 </div>
+
+    <textarea id="input12" style="width:25%; height:fit-content; border-radius:10px; float:left" placeholder="20%" onkeyup="percent_1()"></textarea>
+    <div style="color:gray; margin-left:1%; margin-right:1%; float:left;">%  :  </div>
+
+    <textarea id="output" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="20" onkeyup="percent_1()">%</textarea>
+</div>
+<br><br><br>
+
+
+
+<!---->
+<div style="float:left">일부값 계산 : 전체값의 x퍼센트</div>
+<br>
+<div style="width:100vw; height:fit-content;">
+    
+    <textarea id="input21" style="width:25%; height:fit-content; border-radius:10px; float:left" placeholder="일부값 20" onkeyup="percent_2()"></textarea>
+    <div style="color:gray; margin-left:1%; margin-right:1%; float:left;">은 </div>
+
+    <textarea id="input22" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="전체값 100" onkeyup="percent_2()"></textarea>
+    <div style="color:gray; float:left; margin-left:1%; margin-right:1%;">의 : </div>
+
+
+    <textarea id="output2" style="width:25%; height:fit-content; border-radius:10px; float:left;" placeholder="20" onkeyup="percent_2()"></textarea>%
+</div>
+
+
+<!-- 
+<div style="width:90vw;height:fit-content;">
+<textarea id="input11" style = "width:20%; height:fit-content; border-radius:10px; float:left;" placeholder="전체값 100"></textarea>
+</div> -->
+
+
+<script>
+
+function percent_1(){
+    input11 = parseFloat(document.getElementById("input11").value);
+    input12 = parseFloat(document.getElementById("input12").value);
+    document.getElementById("output").value = input11*(input12/100);
+}
+
+function percent_2(){
+    input21 = parseFloat(document.getElementById("input21").value);
+    input22 = parseFloat(document.getElementById("input22").value);
+    document.getElementById("output2").value = (input21/input22)*100;
+}
+
+
+
+
+
+
+</script>
+
+
+
 

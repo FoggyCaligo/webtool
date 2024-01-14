@@ -7,12 +7,10 @@ function calc_change_btn(value){
             break;
             
         case "요리 계량단위 변환기":
+            change2livunit();
             break;
 
         case "거리 단위 변환기":
-            break;
-        
-        case "퍼센트 계산기":
             break;
             
         case "배당성장주 복리 계산기":
@@ -49,3 +47,8 @@ function change2textcapital(){
 function change2livpercent(){
     document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="./3_living/percent.html"></object>';
 }
+
+function change2livunit(){
+    document.getElementById("contentbox").innerHTML = '<object style="width:90vw; height:70vh;" type="text/html" data="./3_living/unit.html"></object>';
+}
+

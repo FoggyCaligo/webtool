@@ -1,0 +1,65 @@
+<textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="종목명(생략가능)" onkeyup="percent_1()"></textarea>
+<br><br><br>
+<textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="현재주가" onkeyup="percent_1()"></textarea>
+<textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" onkeyup="percent_1()"></textarea>
+<br><br><br>
+<textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" onkeyup="percent_1()"></textarea>
+<textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" onkeyup="percent_1()"></textarea>
+<textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="언제까지(xxxx(ex:2024))" onkeyup="percent_1()"></textarea>
+
+<!-- 배당수익률 = 주당배당금/주가*100
+배당수익률*주가/100 = 주당배당금 -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<div id="rsult" style="width:90vw; height:40vh;">
+
+
+    <canvas id="chart" style="width:90vw; height:40vh;"></canvas>
+
+
+</div>
+
+
+
+<script>
+year = 0;
+yearArr = [];
+dataArr = {};
+
+function get_input(){
+    name = document.getElementById("inputname").value;
+
+    price = document.getElementById("inputprice").value;
+    qty = document.getElementById("inputqty").value;
+    
+    devidend = document.getElementById("inputdevidend").value;
+    growth = document.getElementById("inputgrowth").value;
+    till = document.getElementById("inputyear").value;
+
+
+
+
+    var curr_devidend = devidend;
+
+    var now = new Date();
+    year = now.getFullYear();
+    for(i = year; i<till; i++){//시작년도 ~ 시간범위
+        dataArr[i] = curr_devidend;
+        curr_devidend+= 
+    }
+    
+}
+
+
+
+    // new Chart(document.getElementById("chart"),{
+    //     type:'line',
+    //     data:{
+            
+    //     }
+    // }
+
+</script>

@@ -25,6 +25,31 @@
 
 
 <script>
+
+dataD = {};
+dataD['초기자본'] = 200000;
+dataD['투자기간(연)'] = 15;//document.getElementById
+dataD['배당수익률(%)'] = 4;
+dataD['배당성장률(%)'] = 6;
+dataD['주가'] = 10000;
+dataD['수량'] = dataD['초기자본']/dataD['주가']
+
+calcD = {};
+calcD['0'] = ['년수','자본금','수량','성장배당','연배당금','월배당금']
+calcD['1'] = [1,dataD['초기자본'],dataD['수량'],0,(dataD['배당수익률(%)']*dataD['주가']/100*dataD['수량']),(dataD['배당수익률(%)']*dataD['주가']/100*dataD['수량'])/12 ]
+
+for(i = 2; i<dataD['투자기간(연)']; i++){
+    calcD[String(i)] = [i,  calcD[String(i-1)][2]+calcD[String(i-1)][4], calcD[String(i-1)][2],   calcD[String(i-1)][4]*6/100, calcD[String(i-1)][4]*6/100/12]
+}
+
+
+
+
+
+
+
+
+
 year = 0;
 yearArr = [];
 dataArr = {};
@@ -48,7 +73,7 @@ function get_input(){
     year = now.getFullYear();
     for(i = year; i<till; i++){//시작년도 ~ 시간범위
         dataArr[i] = curr_devidend;
-        curr_devidend+= 
+        //curr_devidend+= 
     }
     
 }

@@ -1,0 +1,102 @@
+
+
+<div>
+    <textarea id="input_amount" style="width:45vw    ; height:50px; border-radius:10px; float:left;" placeholder="양(숫자)" onkeyup="unit_calc()"></textarea>
+
+    <form action="#">
+        <select name="languages" id="unit" style="width:fit-content; height:50px;" onchange="unit_calc()">
+          <option value="select"></option>
+          <option value="Ts">Ts(TableSpoon, 밥숟가락)</option>
+          <option value="ts">ts(teaSpoon, 차숟가락)</option>
+          <option value="cup">cup(종이컵)</option>
+
+          <option value="mg">mg</option>
+          <option value="g">g</option>
+          <option value="kg">kg</option>
+          
+          <option value="ml">ml</option>
+          <option value="L">L</option>
+          <option value="oz">oz</option>
+          <option value="cc">cc</option>
+        </select>
+
+      </form>
+    <hr>
+</div>
+
+
+
+
+<div style="width:90vw;">
+    <div id="ts" class="rsultbox">0ts</div>
+    <div id="Ts" class="rsultbox">0Ts</div>
+    <div id="cup" class="rsultbox">0cup</div>
+    <br>
+
+    <div id="mg" class="rsultbox">0mg</div>
+    <div id="g" class="rsultbox">0g</div>
+    <div id="kg" class="rsultbox">0kg</div>
+    <br>
+
+    <div id="ml" class="rsultbox">0ml</div>
+    <div id="L" class="rsultbox">0L</div>
+    <div id="cc" class="rsultbox">0cc</div>
+    <div id="oz" class="rsultbox">0oz</div>
+    <br>
+</div>
+
+
+<style>
+    .rsultbox{
+        width: 45vw;
+        height:30px;
+        border:1px solid gray;
+        border-radius:10px;
+        margin-bottom: 3px;
+    }
+
+</style>
+
+
+
+
+
+
+
+<script>
+function unit_calc(){
+    input_amount = document.getElementById("input_amount").value;
+    input_unit = document.getElementById("unit").value;
+    //기준단위 : ml
+    cup1 = 195;
+    Ts = 15;
+    ts = 5;
+// 10 150
+// 11 165
+// 12 180
+// 13 195
+
+    switch(input_unit){
+        case "Ts":
+            document.getElementById("ts").innerHTML = ""+input_amount*3+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/13+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*15*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*15+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*15/1000+"kg";
+            
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*15+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*15/1000+"L";
+            document.getElementById("oz").innerHTML = ""+input_amount/13+"oz";
+            document.getElementById("cc").innerHTML = ""+input_amount/13+"cc";
+            
+
+
+    }
+
+
+}
+
+</script>

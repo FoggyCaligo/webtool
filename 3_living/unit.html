@@ -76,7 +76,9 @@ function unit_calc(){
 // 12 180
 // 13 195
 
+
     switch(input_unit){
+        
         case "Ts":
             document.getElementById("ts").innerHTML = ""+input_amount*3+"ts";
             document.getElementById("Ts").innerHTML = ""+input_amount+"Ts";
@@ -86,12 +88,43 @@ function unit_calc(){
             document.getElementById("g").innerHTML = ""+input_amount*15+"g";
             document.getElementById("kg").innerHTML = ""+input_amount*15/1000+"kg";
             
+            document.getElementById("ml").innerHTML = ""+input_amount*15+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*15/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*15+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.033814+"oz";
+            break; 
+
+        case "ts":
+            document.getElementById("ts").innerHTML = ""+input_amount*3/3+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/3+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/13/3+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*15*1000/3+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*15/3+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*15/1000/3+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*15/3+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*15/1000/3+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*15/3+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.033814/3+"oz";
+            break;
+        
+            
+        case "cup":
+            document.getElementById("ts").innerHTML = ""+input_amount*3+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/13+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*15*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*15+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*15/1000+"kg";
             
             document.getElementById("ml").innerHTML = ""+input_amount*15+"ml";
             document.getElementById("L").innerHTML = ""+input_amount*15/1000+"L";
-            document.getElementById("oz").innerHTML = ""+input_amount/13+"oz";
-            document.getElementById("cc").innerHTML = ""+input_amount/13+"cc";
-            
+            document.getElementById("cc").innerHTML = ""+input_amount*15+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.033814+"oz";
+      
+        
 
 
     }

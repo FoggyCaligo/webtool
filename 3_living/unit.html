@@ -49,6 +49,9 @@
     <br>
 </div>
 
+<br><br><br><br><br>
+<div style="font-size:15px;">주의: 모든 변환값은 물을 기준으로 변환되었음을 알립니다. 따라서 가루, 혹은 솜 같은 경우 무게단위와 부피단위의 변환에 약간의 오차가 있을 수 있음을 미리 고지합니다. </div>
+
 
 <style>
     .rsultbox{
@@ -99,7 +102,7 @@ function unit_calc(){
 
     switch(input_unit){
         
-        case "Ts"://확인완료
+        case "Ts"://확인완료 o 
             document.getElementById("ts").innerHTML = ""+input_amount*3+"ts";
             document.getElementById("Ts").innerHTML = ""+input_amount+"Ts";
             document.getElementById("cup").innerHTML = ""+input_amount/13+"cup";
@@ -114,7 +117,7 @@ function unit_calc(){
             document.getElementById("oz").innerHTML = ""+input_amount*0.50721+"oz";
             break; 
 
-        case "ts"://확인완료
+        case "ts"://확인완료 o
             document.getElementById("ts").innerHTML = ""+input_amount*3/3+"ts";
             document.getElementById("Ts").innerHTML = ""+input_amount/3+"Ts";
             document.getElementById("cup").innerHTML = ""+input_amount/13/3+"cup";
@@ -126,11 +129,11 @@ function unit_calc(){
             document.getElementById("ml").innerHTML = ""+input_amount*15/3+"ml";
             document.getElementById("L").innerHTML = ""+input_amount*15/1000/3+"L";
             document.getElementById("cc").innerHTML = ""+input_amount*15/3+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.50721/3+"oz";
+            document.getElementById("oz").innerHTML = ""+input_amount*5/28.35+"oz";
             break; 
 
             
-        case "cup"://확인완료
+        case "cup"://확인완료 o
             document.getElementById("ts").innerHTML = ""+input_amount*39+"ts";
             document.getElementById("Ts").innerHTML = ""+input_amount*13+"Ts";
             document.getElementById("cup").innerHTML = ""+input_amount+"cup";
@@ -142,28 +145,29 @@ function unit_calc(){
             document.getElementById("ml").innerHTML = ""+input_amount*195+"ml";
             document.getElementById("L").innerHTML = ""+input_amount*195/1000+"L";
             document.getElementById("cc").innerHTML = ""+input_amount*195+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.033814*195+"oz";
+            document.getElementById("oz").innerHTML = ""+input_amount*195/28.35+"oz";
             break;  
 
             
-
-        case "mg"://확인완료
-            document.getElementById("ts").innerHTML = ""+input_amount/5+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount/15+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount/195+"cup";
+        case "mg"://확인완료 o
+            document.getElementById("ts").innerHTML = ""+input_amount/5/1000+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/15/1000+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/195/1000+"cup";
             
             document.getElementById("mg").innerHTML = ""+input_amount+"mg";
             document.getElementById("g").innerHTML = ""+input_amount/1000+"g";
             document.getElementById("kg").innerHTML = ""+input_amount/1000/1000+"kg";
             
-            document.getElementById("ml").innerHTML = ""+input_amount+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount/1000+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.033814+"oz";
+            document.getElementById("ml").innerHTML = ""+input_amount/1000+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount/1000/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount/1000+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.00003527396+"oz";
             break; 
             
         
-        case "g":
+        case "g"://확인완료
+        case "ml":
+        case "cc":
             document.getElementById("ts").innerHTML = ""+input_amount/5+"ts";
             document.getElementById("Ts").innerHTML = ""+input_amount/15+"Ts";
             document.getElementById("cup").innerHTML = ""+input_amount/195+"cup";
@@ -177,10 +181,42 @@ function unit_calc(){
             document.getElementById("cc").innerHTML = ""+input_amount+"cc";
             document.getElementById("oz").innerHTML = ""+input_amount*0.033814+"oz";
             break; 
+
+        case 'kg':
+        case 'L':
+            document.getElementById("ts").innerHTML = ""+input_amount/5*1000+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/15*1000+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/195*1000+"cup";
             
+            document.getElementById("mg").innerHTML = ""+input_amount*1000*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*1000+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*1000+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*1000+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.033814*1000+"oz";
+        break;
+    case 'oz':
+            document.getElementById("ts").innerHTML = ""+input_amount*29.5735/5+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount*29.5735/15+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount*29.5735/195+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*29.5735*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*29.5735+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*29.5735/1000+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*29.5735+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*29.5735/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*29.5735+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*29.5735*0.033814+"oz";
+        break;
     }
 
 
 }
+
+
+
 
 </script>

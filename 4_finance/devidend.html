@@ -8,7 +8,8 @@
 <textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="언제까지(xxxx(ex:2024))" onkeyup="percent_1()"></textarea>
 
 <!-- 배당수익률 = 주당배당금/주가*100
-배당수익률*주가/100 = 주당배당금 -->
+    주당 배당금 = 배당수익률*주가/100
+ -->
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -41,6 +42,7 @@ calcD['1'] = [1,dataD['초기자본'],dataD['수량'],0,(dataD['배당수익률(
 for(i = 2; i<dataD['투자기간(연)']; i++){
     calcD[String(i)] = [i,  calcD[String(i-1)][2]+calcD[String(i-1)][4], calcD[String(i-1)][2],   calcD[String(i-1)][4]*6/100, calcD[String(i-1)][4]*6/100/12]
 }
+
 
 
 

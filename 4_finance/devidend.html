@@ -1,77 +1,198 @@
-<textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="종목명(생략가능)" onkeyup="get_input1()"></textarea>
-<br><br><br>
-<textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="현재주가" onkeyup="get_input1()"></textarea>
-<textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" onkeyup="get_input1()"></textarea>
-<br><br><br>
-<textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" onkeyup="get_input1()"></textarea>
-<textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" onkeyup="get_input1()"></textarea>
-<textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="목표기간(단위 : 연)" onkeyup="get_input1()"></textarea>
-
+<div id = input>
+    <textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="종목명(생략가능)" onkeyup="getInputNdrawChart()"></textarea>
+    <br><br><br>
+    <textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="매수가" onkeyup="getInputNdrawChart()"></textarea>
+    <textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" onkeyup="getInputNdrawChart()"></textarea>
+    <br><br><br>
+    <textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" onkeyup="getInputNdrawChart()"></textarea>
+    <textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" onkeyup="getInputNdrawChart()"></textarea>
+    <textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="목표기간(단위 : 연)" onkeyup="getInputNdrawChart()"></textarea>
 <!-- 배당수익률 = 주당배당금/주가*100
     주당 배당금 = 배당수익률*주가/100
  -->
+</div>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+매수가
+<div id="buyprice" style="width:fit-content; height:fit-content; font-size: 10px;">
+</div>
 
 
 <div id="rsult" style="width:90vw; height:40vh;">
-
-
-    <canvas id="chart" style="width:90vw; height:40vh;"></canvas>
+    <canvas id='cvs'></canvas>
 
 
 </div>
+<style>
+    #cvs {
+       background-color : white;
 
+    }
+</style>
 
 
 <script>
 
-dataD = {};
-dataD['초기자본'] = 200000;
-dataD['투자기간(연)'] = 15;//document.getElementById
-dataD['배당수익률(%)'] = 4;
-dataD['배당성장률(%)'] = 6;
-dataD['주가'] = 10000;
-dataD['수량'] = dataD['초기자본']/dataD['주가']
-
-calcD = {};
-calcD['0'] = ['년수','자본금','수량','성장배당','연배당금','월배당금']
-calcD['1'] = [1,dataD['초기자본'],dataD['수량'],0,(dataD['배당수익률(%)']*dataD['주가']/100*dataD['수량']),(dataD['배당수익률(%)']*dataD['주가']/100*dataD['수량'])/12 ]
-
-for(i = 2; i<dataD['투자기간(연)']; i++){
-    calcD[String(i)] = [i,  calcD[String(i-1)][2]+calcD[String(i-1)][4], calcD[String(i-1)][2],   calcD[String(i-1)][4]*6/100, calcD[String(i-1)][4]*6/100/12]
-}
+var data = [100,200,300,400];
 
 
-
-
-
-
-
-
-
-
-
-function get_input1(){
+function getInputNdrawChart(){
     input = {}
     input['종목명'] = document.getElementById("inputname").value;
-    input['현재주가'] = document.getElementById("inputPrice").value;
+    input['매수가'] = document.getElementById("inputPrice").value;
     input['보유수량'] = document.getElementById("inputqty").value;
     input['배당수익률'] = document.getElementById('inputdevidend').value;
     input['배당성장률'] = document.getElementById("inputgrowth").value;
     input['목표기간'] = document.getElementById("inputyear").value;
     input['주당배당금'] = input['배당수익률']*input['현재주가']/100;
+    document.getElementById("buyprice").innerHTML = input['매수가'];
     
-    alert(input);
+    data = []
+    curr_dev = input['주당배당금'];
+    for(i=1; i<input['목표기간']; i++){
+      data[i] = curr_dev + curr_dev*input['배당성장률']/100;
+      curr_dev = curr_dev*input['배당성장률']/100;
+    }
+
+
+
+    draw();
+}
+const cvs = document.getElementById("cvs");
+const ctx = cvs.getContext("2d");
+
+cvs.height = window.innerHeight/3*2;
+cvs.width = window.innerWidth;
+
+// mouse position
+mx = 0;
+my = 0;
+
+function draw() {
+  const pad = 50;
+  const chartInnerWidth = cvs.width - 2 * pad;
+  const chartInnerHeight = cvs.height - 2 * pad;
+
+  ctx.moveTo(pad, pad);
+  ctx.lineTo(pad, pad + chartInnerHeight);
+  ctx.stroke();
+
+  ctx.moveTo(pad, pad + chartInnerHeight);
+  ctx.lineTo(pad + chartInnerWidth, pad + chartInnerHeight);
+  ctx.stroke();
+
+  max = Math.max(...data);
+  min = Math.min(...data);
+  nX = data.length;
+  nY = max - min + 1;
+
+  blockWidth = chartInnerWidth / (nX + 1);
+  blockHeight = chartInnerHeight / (nY + 1);
+
+  // drawing ticks
+  const ticklenhalf = 5;
+  for (i = 1; i < nX + 1; ++i) {
+    ctx.moveTo(pad + i * blockWidth, pad + chartInnerHeight - ticklenhalf);
+    ctx.lineTo(pad + i * blockWidth, pad + chartInnerHeight + ticklenhalf);
+    ctx.stroke();
+    
+    ctx.font = "15px Arial";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    ctx.fillText(
+      (i).toString(),
+      pad + i * blockWidth,
+      pad +chartInnerHeight+30
+     
+    );
+
+    
+  }
+
+  for (i = 1; i < nY + 1; ++i) {
+   
+  }
+
+  xOnCvs = [];
+  yOnCvs = [];
+
+  // where to draw
+  x = pad + blockWidth;
+  y = pad + chartInnerHeight - blockHeight * (data[0] - min + 1);
+
+  xOnCvs.push(x);
+  yOnCvs.push(y);
+
+  for (i = 1; i < nX; ++i) {
+    xOnCvs.push(pad + (i + 1) * blockWidth);
+    yOnCvs.push(pad + chartInnerHeight - blockHeight * (data[i] - min + 1));
+  }
+
+  function drawlines() {
+    ctx.fillStyle = "black";
+    ctx.strokeStyle = "black";
+    x = xOnCvs[0];
+    y = yOnCvs[0];
+
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, 2 * Math.PI);
+    ctx.fill();
+
+    for (i = 1; i < nX; ++i) {
+      nextx = xOnCvs[i];
+      nexty = yOnCvs[i];
+
+      ctx.moveTo(x, y);
+      ctx.lineTo(nextx, nexty);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(nextx, nexty, 5, 0, 2 * Math.PI);
+      ctx.fill();
+
+      x = nextx;
+      y = nexty;
+    }
+  }
+
+  for (i = 0; i < nX; ++i) {
+    dx = xOnCvs[i] - mx;
+    dy = yOnCvs[i] - my;
+    ctx.font = "30px Arial";
+    if (dx * dx + dy * dy < 100) {
+      ctx.fillStyle = "rgba(77, 82, 82,100)";
+      ctx.fillRect(xOnCvs[i], yOnCvs[i] - 40, 40, 40);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "rgb(213, 219, 219)";
+      ctx.fillText(data[i].toString(), xOnCvs[i] + 20, yOnCvs[i] + 20 - 40);
+    }
+  }
+  drawlines();
 }
 
+window.addEventListener("resize", function () {
+  cvs.width = window.innerWidth;
+  cvs.height = document.getElementById("rsult").style.height;
 
-    // new Chart(document.getElementById("chart"),{
-    //     type:'line',
-    //     data:{
-            
-    //     }
-    // }
+  draw();
+});
+
+cvs.addEventListener(
+  "mousemove",
+  function (event) {
+    cvsrect = this.getBoundingClientRect();
+    ctx.clearRect(0, 0, cvsrect.width, cvsrect.height);
+    mx = event.offsetX;
+    my = event.offsetY;
+    draw();
+  },
+  false
+);
+
+
+
+draw();
+
+
 
 </script>

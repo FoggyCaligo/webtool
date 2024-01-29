@@ -1,11 +1,11 @@
-<textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="종목명(생략가능)" onkeyup="percent_1()"></textarea>
+<textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="종목명(생략가능)" onkeyup="get_input1()"></textarea>
 <br><br><br>
-<textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="현재주가" onkeyup="percent_1()"></textarea>
-<textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" onkeyup="percent_1()"></textarea>
+<textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="현재주가" onkeyup="get_input1()"></textarea>
+<textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" onkeyup="get_input1()"></textarea>
 <br><br><br>
-<textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" onkeyup="percent_1()"></textarea>
-<textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" onkeyup="percent_1()"></textarea>
-<textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="언제까지(xxxx(ex:2024))" onkeyup="percent_1()"></textarea>
+<textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" onkeyup="get_input1()"></textarea>
+<textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" onkeyup="get_input1()"></textarea>
+<textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="목표기간(단위 : 연)" onkeyup="get_input1()"></textarea>
 
 <!-- 배당수익률 = 주당배당금/주가*100
     주당 배당금 = 배당수익률*주가/100
@@ -52,34 +52,19 @@ for(i = 2; i<dataD['투자기간(연)']; i++){
 
 
 
-year = 0;
-yearArr = [];
-dataArr = {};
 
-function get_input(){
-    name = document.getElementById("inputname").value;
-
-    price = document.getElementById("inputprice").value;
-    qty = document.getElementById("inputqty").value;
+function get_input1(){
+    input = {}
+    input['종목명'] = document.getElementById("inputname").value;
+    input['현재주가'] = document.getElementById("inputPrice").value;
+    input['보유수량'] = document.getElementById("inputqty").value;
+    input['배당수익률'] = document.getElementById('inputdevidend').value;
+    input['배당성장률'] = document.getElementById("inputgrowth").value;
+    input['목표기간'] = document.getElementById("inputyear").value;
+    input['주당배당금'] = input['배당수익률']*input['현재주가']/100;
     
-    devidend = document.getElementById("inputdevidend").value;
-    growth = document.getElementById("inputgrowth").value;
-    till = document.getElementById("inputyear").value;
-
-
-
-
-    var curr_devidend = devidend;
-
-    var now = new Date();
-    year = now.getFullYear();
-    for(i = year; i<till; i++){//시작년도 ~ 시간범위
-        dataArr[i] = curr_devidend;
-        //curr_devidend+= 
-    }
-    
+    alert(input);
 }
-
 
 
     // new Chart(document.getElementById("chart"),{

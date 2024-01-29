@@ -105,12 +105,12 @@ function getInputNdrawChart(){
  
     for(i=0; i<input['목표기간']; i++){
 
-      curr_value[i] = curr_dev + curr_dev*input['배당성장률']/100;
+      curr_value[i] = (curr_dev + curr_dev*input['배당성장률']/100)*input['보유수량'];
       curr_dev = curr_dev + curr_dev*input['배당성장률']/100;
     }
     
    
-    data = curr_value.reverse();
+    data = curr_value;
 
     
 

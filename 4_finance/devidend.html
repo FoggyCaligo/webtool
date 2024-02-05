@@ -15,7 +15,7 @@
 
     <br><br><br>
     연간 배당 횟수
-    <textarea id="inputcount" style="width:100%; height:fit-content; border-radius:10px; float:left;" placeholder="연간 배당 횟수" value="0" onchange="getInput6(); getInputNdrawChart();"></textarea>
+    <textarea id="inputcount" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="연간 배당 횟수" value="0" onchange="getInput6(); getInputNdrawChart();"></textarea>
     <br><br><br>
 
 
@@ -41,7 +41,6 @@
     }
 </style>
 
-
 <script>
 
 var data = [];
@@ -58,6 +57,25 @@ function getInput5(){input['목표기간'] = parseFloat(document.getElementById(
 function getInput6(){input['연간배당횟수'] = parseFloat(document.getElementById("inputcount").value);}
 
 
+function drawChart(){
+  if(
+      input['매수가'] != null &
+      input['보유수량'] !=null&
+      input['배당수익률'] !=null&
+      input['배당성장률'] !=null&
+      input['목표기간'] !=null&
+      input['연간배당횟수'] !=null
+      ){
+        grant = true;
+    }else{grant=false; return;}
+
+    input['주당배당금'] = input['배당수익률']/100*input['매수가']/input['연간배당횟수'];
+
+
+}
+
+
+
 
 function getInputNdrawChart(){
 
@@ -72,6 +90,7 @@ function getInputNdrawChart(){
         grant = true;
     }else{grant=false; return;}
 
+    
 
     // input = {}
     // input['매수가'] = document.getElementById("inputPrice").value;
@@ -81,22 +100,8 @@ function getInputNdrawChart(){
     // input['목표기간'] = document.getElementById("inputyear").value;
     input['주당배당금'] = input['배당수익률']/100*input['매수가']/input['연간배당횟수'];
 
-    alert(input['주당배당금']);
-    
+  
     //document.getElementById("buyprice").innerHTML = input['매수가'];
-    
-
-    
-
-    if(
-      input['매수가'] != null &&
-      input['보유수량'] !=null&&
-      input['배당수익률'] !=null&&
-      input['배당성장률'] !=null&&
-      input['목표기간'] !=null
-      ){
-        grant = true;
-    }else{grant=false;}
 
 
 
@@ -119,8 +124,11 @@ function getInputNdrawChart(){
 const cvs = document.getElementById("cvs");
 const ctx = cvs.getContext("2d");
 
-cvs.height = window.innerHeight/3*2;
-cvs.width = window.innerWidth;
+// cvs.height = window.innerHeight/3*2;
+// cvs.width = window.innerWidth;
+cvs.height = document.body.clientHeight/3*2
+cvs.width = document.body.clientWidth;
+
 
 // mouse position
 mx = 0;

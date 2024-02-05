@@ -3,19 +3,19 @@
     <textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="" value="0" onchange=""></textarea>
     <br><br><br>
     <div style="width: 100%; height:fit-content">  <div style="float:left; width:45%;">매수가</div>  <div style="float:left; width:45%;">보유수량</div>      </div>
-    <textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="매수가" value="0" onchange="getInput1(); getInputNdrawChart();"></textarea>
-    <textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" value="0" onchange="getInput2(); getInputNdrawChart();"></textarea>
+    <textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="매수가" value="0" onchange="getInput1(); drawChart();"></textarea>
+    <textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" value="0" onchange="getInput2(); drawChart();"></textarea>
     <br><br><br>
     
     <div style="width: 100%; height:fit-content">  <div style="float:left; width:30%;">배당수익률</div>  <div style="float:left; width:30%;">배당성장률</div>   <div style="float:left; width:30%;">목표기간(단위 : 년)</div>   </div>
     
-    <textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" value="0" onchange="getInput3(); getInputNdrawChart();"></textarea>
-    <textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" value="0" onchange="getInput4(); getInputNdrawChart();"></textarea>
-    <textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="목표기간(단위 : 년)" value="0" onchange="getInput5(); getInputNdrawChart();"></textarea>
+    <textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" value="0" onchange="getInput3(); drawChart();"></textarea>
+    <textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" value="0" onchange="getInput4(); drawChart();"></textarea>
+    <textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="목표기간(단위 : 년)" value="0" onchange="getInput5(); drawChart();"></textarea>
 
     <br><br><br>
     연간 배당 횟수
-    <textarea id="inputcount" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="연간 배당 횟수" value="0" onchange="getInput6(); getInputNdrawChart();"></textarea>
+    <textarea id="inputcount" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="연간 배당 횟수" value="0" onchange="getInput6(); drawChart();"></textarea>
     <br><br><br>
 
 
@@ -30,7 +30,12 @@
 
 
 <div id="rsult" style="width:90vw; height:40vh;">
-    <canvas id='cvs'></canvas>
+  
+
+
+
+
+  <canvas id='cvs'></canvas>
 
 
 </div>
@@ -39,7 +44,12 @@
        background-color : white;
 
     }
+
+
 </style>
+
+
+
 
 <script>
 
@@ -71,194 +81,222 @@ function drawChart(){
 
     input['주당배당금'] = input['배당수익률']/100*input['매수가']/input['연간배당횟수'];
 
-
-}
-
-
-
-
-function getInputNdrawChart(){
-
-    if(
-      input['매수가'] != null &
-      input['보유수량'] !=null&
-      input['배당수익률'] !=null&
-      input['배당성장률'] !=null&
-      input['목표기간'] !=null&
-      input['연간배당횟수'] !=null
-      ){
-        grant = true;
-    }else{grant=false; return;}
-
-    
-
-    // input = {}
-    // input['매수가'] = document.getElementById("inputPrice").value;
-    // input['보유수량'] = document.getElementById("inputqty").value;
-    // input['배당수익률'] = document.getElementById('inputdevidend').value;
-    // input['배당성장률'] = document.getElementById("inputgrowth").value;
-    // input['목표기간'] = document.getElementById("inputyear").value;
-    input['주당배당금'] = input['배당수익률']/100*input['매수가']/input['연간배당횟수'];
-
-  
-    //document.getElementById("buyprice").innerHTML = input['매수가'];
-
-
-
     curr_value = [];
     curr_dev = input['주당배당금'];
- 
     for(i=0; i<input['목표기간']; i++){
 
       curr_value[i] = (curr_dev + curr_dev*input['배당성장률']/100)*input['보유수량'];
       curr_dev = curr_dev + curr_dev*input['배당성장률']/100;
     }
-    
-   
     data = curr_value;
+    
+    document.getElementById("rsult").innerHTML="";
+    for(i = 0; i<input['목표기간'];i++){
+      add_bar(data[i]);
+    }
+
+
+
 
     
 
-    draw();
 }
-const cvs = document.getElementById("cvs");
-const ctx = cvs.getContext("2d");
-
-// cvs.height = window.innerHeight/3*2;
-// cvs.width = window.innerWidth;
-cvs.height = document.body.clientHeight/3*2
-cvs.width = document.body.clientWidth;
 
 
-// mouse position
-mx = 0;
-my = 0;
 
-function draw() {
-  const pad = 50;
-  const chartInnerWidth = cvs.width - 2 * pad;
-  const chartInnerHeight = cvs.height - 2 * pad;
+function add_bar(value){
+    max = data[input['목표기간']-1]
+    v = '<object style="float:left">'+value+'</object>';
+    html = '<div>   <div style="float:left; width:10vw; height:fit-content;">'+parseInt(value)+'</div>   <div style="float:left; width:'+parseInt(value)/max*70+'vw; height:10px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
+    document.getElementById("rsult").innerHTML = document.getElementById("rsult").innerHTML+'<br>'+html;
 
-  ctx.moveTo(pad, pad);
-  ctx.lineTo(pad, pad + chartInnerHeight);
-  ctx.stroke();
 
-  ctx.moveTo(pad, pad + chartInnerHeight);
-  ctx.lineTo(pad + chartInnerWidth, pad + chartInnerHeight);
-  ctx.stroke();
+    // document.getElementById("rsult").innerHTML = document.getElementById("rsult").innerHTML+'<br>'+v+'<object style="width:'+value/max*100+'vw; height:10vh; background_color:green; border-radius:10px;" type="text/html"></object>';
+}
 
-  max = Math.max(...data);
-  min = Math.min(...data);
-  nX = data.length;
-  nY = max - min + 1;
 
-  blockWidth = chartInnerWidth / (nX + 1);
-  blockHeight = chartInnerHeight / (nY + 1);
 
-  // drawing ticks
-  const ticklenhalf = 5;
-  for (i = 1; i < nX + 1; ++i) {
-    ctx.moveTo(pad + i * blockWidth, pad + chartInnerHeight - ticklenhalf);
-    ctx.lineTo(pad + i * blockWidth, pad + chartInnerHeight + ticklenhalf);
-    ctx.stroke();
+
+// function drawChart(){
+
+//     if(
+//       input['매수가'] != null &
+//       input['보유수량'] !=null&
+//       input['배당수익률'] !=null&
+//       input['배당성장률'] !=null&
+//       input['목표기간'] !=null&
+//       input['연간배당횟수'] !=null
+//       ){
+//         grant = true;
+//     }else{grant=false; return;}
+  
+//     // input = {}
+//     // input['매수가'] = document.getElementById("inputPrice").value;
+//     // input['보유수량'] = document.getElementById("inputqty").value;
+//     // input['배당수익률'] = document.getElementById('inputdevidend').value;
+//     // input['배당성장률'] = document.getElementById("inputgrowth").value;
+//     // input['목표기간'] = document.getElementById("inputyear").value;
+//     input['주당배당금'] = input['배당수익률']/100*input['매수가']/input['연간배당횟수'];
+
+  
+//     //document.getElementById("buyprice").innerHTML = input['매수가'];
+
+
+
+//     curr_value = [];
+//     curr_dev = input['주당배당금'];
+ 
+//     for(i=0; i<input['목표기간']; i++){
+
+//       curr_value[i] = (curr_dev + curr_dev*input['배당성장률']/100)*input['보유수량'];
+//       curr_dev = curr_dev + curr_dev*input['배당성장률']/100;
+//     }
     
-    ctx.font = "15px Arial";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "middle";
-    ctx.fillText(
-      (i).toString(),
-      pad + i * blockWidth,
-      pad +chartInnerHeight+30
-     
-    );
-
-    
-  }
-
-  for (i = 1; i < nY + 1; ++i) {
    
-  }
+//     data = curr_value;
 
-  xOnCvs = [];
-  yOnCvs = [];
+    
 
-  // where to draw
-  x = pad + blockWidth;
-  y = pad + chartInnerHeight - blockHeight * (data[0] - min + 1);
+//     draw();
+// }
+// const cvs = document.getElementById("cvs");
+// const ctx = cvs.getContext("2d");
 
-  xOnCvs.push(x);
-  yOnCvs.push(y);
-
-  for (i = 1; i < nX; ++i) {
-    xOnCvs.push(pad + (i + 1) * blockWidth);
-    yOnCvs.push(pad + chartInnerHeight - blockHeight * (data[i] - min + 1));
-  }
-
-  function drawlines() {
-    ctx.fillStyle = "black";
-    ctx.strokeStyle = "black";
-    x = xOnCvs[0];
-    y = yOnCvs[0];
-
-    ctx.beginPath();
-    ctx.arc(x, y, 5, 0, 2 * Math.PI);
-    ctx.fill();
-
-    for (i = 1; i < nX; ++i) {
-      nextx = xOnCvs[i];
-      nexty = yOnCvs[i];
-
-      ctx.moveTo(x, y);
-      ctx.lineTo(nextx, nexty);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(nextx, nexty, 5, 0, 2 * Math.PI);
-      ctx.fill();
-
-      x = nextx;
-      y = nexty;
-    }
-  }
-
-  for (i = 0; i < nX; ++i) {
-    dx = xOnCvs[i] - mx;
-    dy = yOnCvs[i] - my;
-    ctx.font = "30px Arial";
-    if (dx * dx + dy * dy < 100) {
-      ctx.fillStyle = "rgba(77, 82, 82,100)";
-      ctx.fillRect(xOnCvs[i], yOnCvs[i] - 40, 40, 40);
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillStyle = "rgb(213, 219, 219)";
-      ctx.fillText(data[i].toString(), xOnCvs[i] + 20, yOnCvs[i] + 20 - 40);
-    }
-  }
-  drawlines();
-}
-
-window.addEventListener("resize", function () {
-  cvs.width = window.innerWidth;
-  cvs.height = document.getElementById("rsult").style.height;
-
-  draw();
-});
-
-cvs.addEventListener(
-  "mousemove",
-  function (event) {
-    cvsrect = this.getBoundingClientRect();
-    ctx.clearRect(0, 0, cvsrect.width, cvsrect.height);
-    mx = event.offsetX;
-    my = event.offsetY;
-    draw();
-  },
-  false
-);
+// // cvs.height = window.innerHeight/3*2;
+// // cvs.width = window.innerWidth;
+// cvs.height = document.body.clientHeight/3*2
+// cvs.width = document.body.clientWidth;
 
 
+// // mouse position
+// mx = 0;
+// my = 0;
 
-draw();
+// function draw() {
+//   const pad = 50;
+//   const chartInnerWidth = cvs.width - 2 * pad;
+//   const chartInnerHeight = cvs.height - 2 * pad;
+
+//   ctx.moveTo(pad, pad);
+//   ctx.lineTo(pad, pad + chartInnerHeight);
+//   ctx.stroke();
+
+//   ctx.moveTo(pad, pad + chartInnerHeight);
+//   ctx.lineTo(pad + chartInnerWidth, pad + chartInnerHeight);
+//   ctx.stroke();
+
+//   max = Math.max(...data);
+//   min = Math.min(...data);
+//   nX = data.length;
+//   nY = max - min + 1;
+
+//   blockWidth = chartInnerWidth / (nX + 1);
+//   blockHeight = chartInnerHeight / (nY + 1);
+
+//   // drawing ticks
+//   const ticklenhalf = 5;
+//   for (i = 1; i < nX + 1; ++i) {
+//     ctx.moveTo(pad + i * blockWidth, pad + chartInnerHeight - ticklenhalf);
+//     ctx.lineTo(pad + i * blockWidth, pad + chartInnerHeight + ticklenhalf);
+//     ctx.stroke();
+    
+//     ctx.font = "15px Arial";
+//     ctx.textAlign = "right";
+//     ctx.textBaseline = "middle";
+//     ctx.fillText(
+//       (i).toString(),
+//       pad + i * blockWidth,
+//       pad +chartInnerHeight+30
+     
+//     );
+
+    
+//   }
+
+//   for (i = 1; i < nY + 1; ++i) {
+   
+//   }
+
+//   xOnCvs = [];
+//   yOnCvs = [];
+
+//   // where to draw
+//   x = pad + blockWidth;
+//   y = pad + chartInnerHeight - blockHeight * (data[0] - min + 1);
+
+//   xOnCvs.push(x);
+//   yOnCvs.push(y);
+
+//   for (i = 1; i < nX; ++i) {
+//     xOnCvs.push(pad + (i + 1) * blockWidth);
+//     yOnCvs.push(pad + chartInnerHeight - blockHeight * (data[i] - min + 1));
+//   }
+
+//   function drawlines() {
+//     ctx.fillStyle = "black";
+//     ctx.strokeStyle = "black";
+//     x = xOnCvs[0];
+//     y = yOnCvs[0];
+
+//     ctx.beginPath();
+//     ctx.arc(x, y, 5, 0, 2 * Math.PI);
+//     ctx.fill();
+
+//     for (i = 1; i < nX; ++i) {
+//       nextx = xOnCvs[i];
+//       nexty = yOnCvs[i];
+
+//       ctx.moveTo(x, y);
+//       ctx.lineTo(nextx, nexty);
+//       ctx.stroke();
+
+//       ctx.beginPath();
+//       ctx.arc(nextx, nexty, 5, 0, 2 * Math.PI);
+//       ctx.fill();
+
+//       x = nextx;
+//       y = nexty;
+//     }
+//   }
+
+//   for (i = 0; i < nX; ++i) {
+//     dx = xOnCvs[i] - mx;
+//     dy = yOnCvs[i] - my;
+//     ctx.font = "30px Arial";
+//     if (dx * dx + dy * dy < 100) {
+//       ctx.fillStyle = "rgba(77, 82, 82,100)";
+//       ctx.fillRect(xOnCvs[i], yOnCvs[i] - 40, 40, 40);
+//       ctx.textAlign = "center";
+//       ctx.textBaseline = "middle";
+//       ctx.fillStyle = "rgb(213, 219, 219)";
+//       ctx.fillText(data[i].toString(), xOnCvs[i] + 20, yOnCvs[i] + 20 - 40);
+//     }
+//   }
+//   drawlines();
+// }
+
+// window.addEventListener("resize", function () {
+//   cvs.width = window.innerWidth;
+//   cvs.height = document.getElementById("rsult").style.height;
+
+//   draw();
+// });
+
+// cvs.addEventListener(
+//   "mousemove",
+//   function (event) {
+//     cvsrect = this.getBoundingClientRect();
+//     ctx.clearRect(0, 0, cvsrect.width, cvsrect.height);
+//     mx = event.offsetX;
+//     my = event.offsetY;
+//     draw();
+//   },
+//   false
+// );
+
+
+
+// draw();
 
 
 

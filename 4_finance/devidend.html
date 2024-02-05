@@ -7,7 +7,7 @@
     <textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" value="0" onchange="getInput2(); drawChart();"></textarea>
     <br><br><br>
     
-    <div style="width: 100%; height:fit-content">  <div style="float:left; width:30%;">배당수익률</div>  <div style="float:left; width:30%;">배당성장률</div>   <div style="float:left; width:30%;">목표기간(단위 : 년)</div>   </div>
+    <div style="width: 100%; height:fit-content">  <div style="float:left; width:30%;">배당수익률(%)</div>  <div style="float:left; width:30%;">배당성장률(%)</div>   <div style="float:left; width:30%;">목표기간(단위 : 년)</div>   </div>
     
     <textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" value="0" onchange="getInput3(); drawChart();"></textarea>
     <textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" value="0" onchange="getInput4(); drawChart();"></textarea>
@@ -107,7 +107,7 @@ function drawChart(){
 function add_bar(i,value){
     max = data[input['목표기간']-1]
     v = '<object style="float:left">'+value+'</object>';
-    html = '<div>   <div style="float:left; width:20vw; height:fit-content;">'+i+'년차 : '+parseInt(value)+'</div>   <div style="float:left; width:'+parseInt(value)/max*60+'vw; height:10px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
+    html = '<div>   <div style="float:left; width:30vw; height:fit-content;">'+i+'년차 : '+parseInt(value)+'</div>   <div style="float:left; width:'+parseInt(value)/max*60+'vw; height:10px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
     document.getElementById("rsult").innerHTML = document.getElementById("rsult").innerHTML+'<br>'+html;
 
 }

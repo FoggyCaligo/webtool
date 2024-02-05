@@ -1,1 +1,226 @@
-dist
+
+
+<div>
+    <textarea id="input_amount" style="width:45vw    ; height:50px; border-radius:10px; float:left;" placeholder="양(숫자)" onkeyup="unit_calc()"></textarea>
+
+    <form action="#">
+        <select name="languages" id="unit" style="width:fit-content; height:50px;" onchange="unit_calc()">
+          <option value="select"></option>
+          <option value="km">km</option>
+          <option value="m">m</option>
+          <option value="cm">cm</option>
+          <option value="cm">mm</option>
+            
+          <option value="mg">mile</option><!--1.6km-->
+          <option value="g">yard</option><!--0.9m-->
+          <option value="kg">feet</option><!--30cm-->
+          <option value="kg">inch</option><!--2.54cm-->
+        
+          <option value="ml">ml</option>
+          <option value="L">L</option>
+          <option value="oz">oz</option>
+          <option value="cc">cc</option>
+        </select>
+
+      </form>
+    <hr>
+</div>
+
+
+
+
+<div style="width:90vw;">
+    <!-- <div><div id="ts" class="rsultbox">0</div> <div class="rsultbox">ts</div>   </div> -->
+    <!-- <div><div id="Ts" class="rsultbox"style="float:left;">0</div> <div>Ts</div>   </div>
+     -->
+    <div></div>
+    <div class="unit">미국단위</div><div id="usa" class="rsultbox">0</div>
+    
+
+    <div>생활단위</div>
+    <div class="unit">ts</div><div id="ts" class="rsultbox">0</div>
+    <div class="unit">Ts</div><div id="Ts" class="rsultbox">0</div>
+    <div class="unit">cup</div><div id="cup" class="rsultbox">0</div>
+    <br>
+    <div>무게단위</div>
+    <div class="unit">mg</div><div id="mg" class="rsultbox">0</div>
+    <div class="unit">g</div><div id="g" class="rsultbox">0</div>
+    <div class="unit">kg</div><div id="kg" class="rsultbox">0</div>
+    <br>
+    <div>부피단위</div>
+    <div class="unit">ml</div><div id="ml" class="rsultbox">0</div>
+    <div class="unit">L</div><div id="L" class="rsultbox">0</div>
+    <div class="unit">cc</div><div id="cc" class="rsultbox">0</div>
+    <div class="unit">oz</div><div id="oz" class="rsultbox">0</div>
+    <br>
+</div>
+
+<br><br><br><br><br>
+<div style="font-size:15px;">주의: 모든 변환값은 물을 기준으로 변환되었음을 알립니다. 따라서 가루, 혹은 솜 같은 경우 무게단위와 부피단위의 변환에 약간의 오차가 있을 수 있음을 미리 고지합니다. </div>
+
+
+<style>
+    .rsultbox{
+        width: 45vw;
+        height:30px;
+        border:1px solid gray;
+        border-radius:10px;
+        margin-bottom: 3px;
+        
+    }
+    .unit{
+        width:10vw;
+        height:30px;
+        border:1px solid gray;
+        border-radius:10px;
+        margin-bottom:3px;
+        float:left;
+        background-color:#FFFAD6 ;
+        text-align: center;
+    }
+
+</style>
+
+
+
+
+
+
+
+<script>
+function unit_calc(){
+    input_amount = document.getElementById("input_amount").value;
+    input_unit = document.getElementById("unit").value;
+    //기준단위 : ml
+    cup1 = 195;
+    Ts = 15;
+    ts = 5;
+// 10 150
+// 11 165
+// 12 180
+// 13 195
+//1cc = 100mg
+
+//1/25 목 까지 완료하기
+//1. 각각의 단위 하나하나씩 확인
+//2. 다른 단위들에 대한 변환도 만들기
+
+
+    switch(input_unit){
+        
+        case "Ts"://확인완료 o 
+            document.getElementById("ts").innerHTML = ""+input_amount*3+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/13+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*15*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*15+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*15/1000+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*15+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*15/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*15+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.50721+"oz";
+            break; 
+
+        case "ts"://확인완료 o
+            document.getElementById("ts").innerHTML = ""+input_amount*3/3+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/3+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/13/3+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*15*1000/3+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*15/3+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*15/1000/3+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*15/3+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*15/1000/3+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*15/3+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*5/28.35+"oz";
+            break; 
+
+            
+        case "cup"://확인완료 o
+            document.getElementById("ts").innerHTML = ""+input_amount*39+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount*13+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*195*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*195+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*195/1000+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*195+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*195/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*195+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*195/28.35+"oz";
+            break;  
+
+            
+        case "mg"://확인완료 o
+            document.getElementById("ts").innerHTML = ""+input_amount/5/1000+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/15/1000+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/195/1000+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount/1000+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount/1000/1000+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount/1000+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount/1000/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount/1000+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.00003527396+"oz";
+            break; 
+            
+        
+        case "g"://확인완료
+        case "ml":
+        case "cc":
+            document.getElementById("ts").innerHTML = ""+input_amount/5+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/15+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/195+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount/1000+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.033814+"oz";
+            break; 
+
+        case 'kg':
+        case 'L':
+            document.getElementById("ts").innerHTML = ""+input_amount/5*1000+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount/15*1000+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount/195*1000+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*1000*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*1000+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*1000+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*1000+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*0.033814*1000+"oz";
+        break;
+    case 'oz':
+            document.getElementById("ts").innerHTML = ""+input_amount*29.5735/5+"ts";
+            document.getElementById("Ts").innerHTML = ""+input_amount*29.5735/15+"Ts";
+            document.getElementById("cup").innerHTML = ""+input_amount*29.5735/195+"cup";
+            
+            document.getElementById("mg").innerHTML = ""+input_amount*29.5735*1000+"mg";
+            document.getElementById("g").innerHTML = ""+input_amount*29.5735+"g";
+            document.getElementById("kg").innerHTML = ""+input_amount*29.5735/1000+"kg";
+            
+            document.getElementById("ml").innerHTML = ""+input_amount*29.5735+"ml";
+            document.getElementById("L").innerHTML = ""+input_amount*29.5735/1000+"L";
+            document.getElementById("cc").innerHTML = ""+input_amount*29.5735+"cc";
+            document.getElementById("oz").innerHTML = ""+input_amount*29.5735*0.033814+"oz";
+        break;
+    }
+
+
+}
+
+
+</script>

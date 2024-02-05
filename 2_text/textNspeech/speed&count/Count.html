@@ -6,22 +6,30 @@
 
  <!--result-->
  <div style="width:100%;">
-    <div class="rsult_banner">글자 수</div>
-    <div class="rsult_num" id="count" >0</div>
-    <br>
-    <div class="rsult_banner">공백제외</div>
-    <div class="rsult_num" id="count_exvoid" >0</div>
-    <br>
-    <div class="rsult_banner">공백 수</div>
-    <div class="rsult_num" id="voids" >0</div>
-    <br>
-    <div class="rsult_banner">단어 수</div>
-    <div class="rsult_num" id="words" >0</div>
-    <br>
-    <div class="rsult_banner">발표 시간</div>
-    <div class="rsult_num" id="time" >0</div>
+    <div class="container">
+        <div class="rsult_banner">글자 수</div>
+        <div class="rsult_num" id="count" >0</div>
+    </div>
 
+    <div class="container">
+        <div class="rsult_banner">공백제외</div>
+        <div class="rsult_num" id="count_exvoid" >0</div>
+    </div>
+    
+    <div class="container">
+        <div class="rsult_banner">공백 수</div>
+        <div class="rsult_num" id="voids" >0</div>
+    </div>
 
+    <div class="container">
+        <div class="rsult_banner">단어 수</div>
+        <div class="rsult_num" id="words" >0</div>
+    </div>
+
+    <div class="container">
+        <div class="rsult_banner">발표 시간</div>
+        <div class="rsult_num" id="time" >0</div>
+    </div>
     
 </div>
 
@@ -119,10 +127,14 @@ function count_time(){
 <!--style classes-->
 <style>
 .rsult_banner{
-    width:20vw; height:fit-content; background-color:#EDEDED; border-radius: 10px; float:left; margin-top:1.5vh;
+    width:20vw; height:fit-content; background-color:#EDEDED; border-radius: 10px; float:left; 
 }
 .rsult_num{
-    text-align: left; width:70vw; height:fit-content; border:1px solid gray; border-radius: 10px; float:left; margin-top:1.5vh;
+    text-align: left; width:70vw; height:fit-content; border:1px solid gray; border-radius: 10px; float:left; 
 
+}
+
+.container{
+    width:95vw; height:fit-content; margin-top:1vh;
 }
 </style>

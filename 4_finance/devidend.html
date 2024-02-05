@@ -27,8 +27,8 @@
 
 <div id="buyprice" style="width:fit-content; height:fit-content; font-size: 10px;">
 </div>
-
-
+<br><br><br>
+<div>연간 받는 배당금 성장 추이</div>
 <div id="rsult" style="width:90vw; height:40vh;">
   
 
@@ -92,7 +92,7 @@ function drawChart(){
     
     document.getElementById("rsult").innerHTML="";
     for(i = 0; i<input['목표기간'];i++){
-      add_bar(data[i]);
+      add_bar(i+1, data[i]);
     }
 
 
@@ -104,14 +104,12 @@ function drawChart(){
 
 
 
-function add_bar(value){
+function add_bar(i,value){
     max = data[input['목표기간']-1]
     v = '<object style="float:left">'+value+'</object>';
-    html = '<div>   <div style="float:left; width:10vw; height:fit-content;">'+parseInt(value)+'</div>   <div style="float:left; width:'+parseInt(value)/max*70+'vw; height:10px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
+    html = '<div>   <div style="float:left; width:20vw; height:fit-content;">'+i+'년차 : '+parseInt(value)+'</div>   <div style="float:left; width:'+parseInt(value)/max*60+'vw; height:10px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
     document.getElementById("rsult").innerHTML = document.getElementById("rsult").innerHTML+'<br>'+html;
 
-
-    // document.getElementById("rsult").innerHTML = document.getElementById("rsult").innerHTML+'<br>'+v+'<object style="width:'+value/max*100+'vw; height:10vh; background_color:green; border-radius:10px;" type="text/html"></object>';
 }
 
 

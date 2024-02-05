@@ -107,7 +107,7 @@ function drawChart(){
 function add_bar(i,value){
     max = data[input['목표기간']-1]
     v = '<object style="float:left">'+value+'</object>';
-    html = '<div>   <div style="float:left; width:30vw; height:fit-content; ">'+i+'년차 : '+parseInt(value)+'</div>   <div style="float:left; width:'+parseInt(value)/max*50+'vw; height:10px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
+    html = '<div>   <div style="float:left; width:30vw; height:20px; ">'+i+'년차 : '+parseInt(value)+'</div>   <div style=" width:'+parseInt(value)/max*50+'vw; height:20px; background-color: #bff0bf; border-radius: 5px;">  </div>   </div>';
     document.getElementById("rsult").innerHTML = document.getElementById("rsult").innerHTML+'<br>'+html;
 
 }

@@ -9,17 +9,12 @@
           <option value="km">km</option>
           <option value="m">m</option>
           <option value="cm">cm</option>
-          <option value="cm">mm</option>
+          <option value="mm">mm</option>
             
           <option value="mg">mile</option><!--1.6km-->
           <option value="g">yard</option><!--0.9m-->
           <option value="kg">feet</option><!--30cm-->
           <option value="kg">inch</option><!--2.54cm-->
-        
-          <option value="ml">ml</option>
-          <option value="L">L</option>
-          <option value="oz">oz</option>
-          <option value="cc">cc</option>
         </select>
 
       </form>
@@ -37,21 +32,18 @@
     <!-- <div class="unit">미국단위</div><div id="usa" class="rsultbox">0</div> -->
     
 
+    <div>국제단위</div>
+    <div class="unit">km</div><div id="km" class="rsultbox">0</div>
+    <div class="unit">m</div><div id="m" class="rsultbox">0</div>
+    <div class="unit">cm</div><div id="cm" class="rsultbox">0</div>
+    <div class="unit">mm</div><div id="mm" class="rsultbox">0</div>
+    
+    <br>
     <div>미국단위</div>
-    <div class="unit">ts</div><div id="ts" class="rsultbox">0</div>
-    <div class="unit">Ts</div><div id="Ts" class="rsultbox">0</div>
-    <div class="unit">cup</div><div id="cup" class="rsultbox">0</div>
-    <br>
-    <div>무게단위</div>
-    <div class="unit">mg</div><div id="mg" class="rsultbox">0</div>
-    <div class="unit">g</div><div id="g" class="rsultbox">0</div>
-    <div class="unit">kg</div><div id="kg" class="rsultbox">0</div>
-    <br>
-    <div>부피단위</div>
-    <div class="unit">ml</div><div id="ml" class="rsultbox">0</div>
-    <div class="unit">L</div><div id="L" class="rsultbox">0</div>
-    <div class="unit">cc</div><div id="cc" class="rsultbox">0</div>
-    <div class="unit">oz</div><div id="oz" class="rsultbox">0</div>
+    <div class="unit">mile</div><div id="mile" class="rsultbox">0</div>
+    <div class="unit">yard</div><div id="yard" class="rsultbox">0</div>
+    <div class="unit">feet</div><div id="feet" class="rsultbox">0</div>
+    <div class="unit">inch</div><div id="inch" class="rsultbox">0</div>
     <br>
 </div>
 
@@ -61,7 +53,7 @@
 
 <style>
     .rsultbox{
-        width: 45vw;
+        width: 70vw;
         height:30px;
         border:1px solid gray;
         border-radius:10px;
@@ -91,132 +83,107 @@
 function unit_calc(){
     input_amount = document.getElementById("input_amount").value;
     input_unit = document.getElementById("unit").value;
-    //기준단위 : ml
-    cup1 = 195;
-    Ts = 15;
-    ts = 5;
-// 10 150
-// 11 165
-// 12 180
-// 13 195
-//1cc = 100mg
-
-//1/25 목 까지 완료하기
-//1. 각각의 단위 하나하나씩 확인
-//2. 다른 단위들에 대한 변환도 만들기
 
 
     switch(input_unit){
         
-        case "Ts"://확인완료 o 
-            document.getElementById("ts").innerHTML = ""+input_amount*3+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount/13+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount*15*1000+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount*15+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount*15/1000+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount*15+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount*15/1000+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount*15+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.50721+"oz";
-            break; 
+        case "km"://확인완료 o 
+            document.getElementById("km").innerHTML = ""+input_amount+"km";
+            document.getElementById("m").innerHTML = ""+input_amount*1000+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount*1000*100+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*1000*100*10+"mm";
 
-        case "ts"://확인완료 o
-            document.getElementById("ts").innerHTML = ""+input_amount*3/3+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount/3+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount/13/3+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount*15*1000/3+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount*15/3+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount*15/1000/3+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount*15/3+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount*15/1000/3+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount*15/3+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*5/28.35+"oz";
-            break; 
-
-            
-        case "cup"://확인완료 o
-            document.getElementById("ts").innerHTML = ""+input_amount*39+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount*13+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount*195*1000+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount*195+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount*195/1000+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount*195+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount*195/1000+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount*195+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*195/28.35+"oz";
-            break;  
-
-            
-        case "mg"://확인완료 o
-            document.getElementById("ts").innerHTML = ""+input_amount/5/1000+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount/15/1000+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount/195/1000+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount/1000+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount/1000/1000+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount/1000+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount/1000/1000+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount/1000+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.00003527396+"oz";
-            break; 
-            
+            document.getElementById("mile").innerHTML = ""+input_amount*0.621371+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*1093.61+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*3280.84+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*39370.1+"inch";
+        break; 
         
-        case "g"://확인완료
-        case "ml":
-        case "cc":
-            document.getElementById("ts").innerHTML = ""+input_amount/5+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount/15+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount/195+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount*1000+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount/1000+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount/1000+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.033814+"oz";
-            break; 
+        case "m"://확인완료 o 
+            document.getElementById("km").innerHTML = ""+input_amount/1000+"km";
+            document.getElementById("m").innerHTML = ""+input_amount+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount*100+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*100*10+"mm";
 
-        case 'kg':
-        case 'L':
-            document.getElementById("ts").innerHTML = ""+input_amount/5*1000+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount/15*1000+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount/195*1000+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount*1000*1000+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount*1000+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount*1000+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount*1000+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*0.033814*1000+"oz";
-        break;
-    case 'oz':
-            document.getElementById("ts").innerHTML = ""+input_amount*29.5735/5+"ts";
-            document.getElementById("Ts").innerHTML = ""+input_amount*29.5735/15+"Ts";
-            document.getElementById("cup").innerHTML = ""+input_amount*29.5735/195+"cup";
-            
-            document.getElementById("mg").innerHTML = ""+input_amount*29.5735*1000+"mg";
-            document.getElementById("g").innerHTML = ""+input_amount*29.5735+"g";
-            document.getElementById("kg").innerHTML = ""+input_amount*29.5735/1000+"kg";
-            
-            document.getElementById("ml").innerHTML = ""+input_amount*29.5735+"ml";
-            document.getElementById("L").innerHTML = ""+input_amount*29.5735/1000+"L";
-            document.getElementById("cc").innerHTML = ""+input_amount*29.5735+"cc";
-            document.getElementById("oz").innerHTML = ""+input_amount*29.5735*0.033814+"oz";
-        break;
+            document.getElementById("mile").innerHTML = ""+input_amount*0.000621371+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*1.09361+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*3.28084+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*39.3701+"inch";
+        break; 
+
+        case "cm"://확인완료 o 
+            document.getElementById("km").innerHTML = ""+input_amount/1000/100+"km";
+            document.getElementById("m").innerHTML = ""+input_amount/100+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*10+"mm";
+
+            document.getElementById("mile").innerHTML = ""+input_amount*0.0000062137+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*0.0109361+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*0.0328084+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*0.393701+"inch";
+        break; 
+        
+        
+        case "mm"://확인완료 o 
+            document.getElementById("km").innerHTML = ""+input_amount/1000/100/10+"km";
+            document.getElementById("m").innerHTML = ""+input_amount/100+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount/10+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount+"mm";
+
+            document.getElementById("mile").innerHTML = ""+input_amount*0.00000062137+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*0.00109361+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*0.00328084+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*0.0393701+"inch";
+        break; 
+
+        case 'mile'://확인완료 o 
+            document.getElementById("km").innerHTML =  ""+input_amount*1.60934+"km";
+            document.getElementById("m").innerHTML = ""+input_amount*1609.34+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount*160934+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*1609344+"mm";
+
+            document.getElementById("mile").innerHTML = ""+input_amount+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*1760+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*5280+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*63360+"inch";
+        break; 
+        
+        case 'yard'://확인완료 o 
+            document.getElementById("km").innerHTML =  ""+input_amount*0.0009144+"km";
+            document.getElementById("m").innerHTML = ""+input_amount*0.9144+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount*91.44+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*91.44*10+"mm";
+
+            document.getElementById("mile").innerHTML = ""+input_amount*0.000568182+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*3+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*36+"inch";
+        break; 
+
+        case 'feet'://확인완료 o 
+            document.getElementById("km").innerHTML =  ""+input_amount*0.0003048+"km";
+            document.getElementById("m").innerHTML = ""+input_amount*0.0003048*1000+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount*0.0003048*1000*100+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*0.0003048*1000*100*10+"mm";
+
+            document.getElementById("mile").innerHTML = ""+input_amount*0.000189394+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*0.333333+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount*12+"inch";
+        break; 
+        
+        case 'inch'://확인완료 o 
+            document.getElementById("km").innerHTML =  ""+input_amount*0.0000254 +"km";
+            document.getElementById("m").innerHTML = ""+input_amount*0.0000254*1000+"m";
+            document.getElementById("cm").innerHTML = ""+input_amount*0.0000254*1000*100+"cm";
+            document.getElementById("mm").innerHTML = ""+input_amount*0.0000254*1000*100*10+"mm";
+
+            document.getElementById("mile").innerHTML = ""+input_amount*0.0000157828+"mile";
+            document.getElementById("yard").innerHTML = ""+input_amount*0.0277778+"yard";
+            document.getElementById("feet").innerHTML = ""+input_amount*0.0833333+"feet";
+            document.getElementById("inch").innerHTML = ""+input_amount+"inch";
+        break; 
+
     }
 
 

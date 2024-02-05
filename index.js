@@ -18,7 +18,7 @@ function calc_change_btn(value){
             changeContent("./4_finance/devidend.html");
             break;
         
-        case "주식 수익 계산기":
+        case "주식 수익률 계산기":
             changeContent("./4_finance/revenue.html");    
         break;
 

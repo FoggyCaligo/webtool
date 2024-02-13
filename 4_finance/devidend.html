@@ -1,20 +1,19 @@
 <div id = input>
-  종목명(생략가능)
-    <textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="" value="0" onchange=""></textarea>
+    <textarea id="inputname" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="종목명(생략가능)" value="0" onchange=""></textarea>
     <br><br><br>
-    <div style="width: 100%; height:fit-content">  <div style="float:left; width:45%;">매수가</div>  <div style="float:left; width:45%;">보유수량</div>      </div>
+    <!-- <div style="width: 100%; height:fit-content">  <div style="float:left; width:45%;">매수가</div>  <div style="float:left; width:45%;">보유수량</div>      </div> -->
     <textarea id="inputprice" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="매수가" value="0" onchange="getInput1(); drawChart();"></textarea>
     <textarea id="inputqty" style="width:45%; height:fit-content; border-radius:10px; float:left;" placeholder="보유수량" value="0" onchange="getInput2(); drawChart();"></textarea>
     <br><br><br>
     
-    <div style="width: 100%; height:fit-content">  <div style="float:left; width:30%;">배당수익률(%)</div>  <div style="float:left; width:30%;">배당성장률(%)</div>   <div style="float:left; width:30%;">목표기간(단위 : 년)</div>   </div>
+    <!-- <div style="width: 100%; height:fit-content">  <div style="float:left; width:30%;">배당수익률(%)</div>  <div style="float:left; width:30%;">배당성장률(%)</div>   <div style="float:left; width:30%;">목표기간(단위 : 년)</div>   </div> -->
     
     <textarea id="inputdevidend" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당수익률" value="0" onchange="getInput3(); drawChart();"></textarea>
     <textarea id="inputgrowth" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="배당성장률" value="0" onchange="getInput4(); drawChart();"></textarea>
     <textarea id="inputyear" style="width:30%; height:fit-content; border-radius:10px; float:left;" placeholder="목표기간(단위 : 년)" value="0" onchange="getInput5(); drawChart();"></textarea>
 
     <br><br><br>
-    연간 배당 횟수
+    <!-- 연간 배당 횟수 -->
     <textarea id="inputcount" style="width:90%; height:fit-content; border-radius:10px; float:left;" placeholder="연간 배당 횟수" value="0" onchange="getInput6(); drawChart();"></textarea>
     <br><br><br>
 
